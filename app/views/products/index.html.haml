@@ -1,0 +1,15 @@
+%h1 登録済みの商品一覧
+
+%table.table
+  %thead
+    %tr
+      %th 名前
+      %th 説明
+
+  %tbody
+    - @products.each do |product|
+      %tr
+        %td= link_to product.name, product
+        %td= product.description
+
+.text-center= paginate @products

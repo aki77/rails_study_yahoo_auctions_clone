@@ -35,4 +35,6 @@ class User < ActiveRecord::Base
                        format: { with: VALID_USERNAME_REGEX },
                        uniqueness: { case_sensitive: false },
                        length: { maximum: 15 }
+
+  has_many :products, dependent: :destroy
 end

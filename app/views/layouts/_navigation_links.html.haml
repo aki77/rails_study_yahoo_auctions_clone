@@ -1,4 +1,5 @@
 - if signed_in?
+  %li= link_to '商品を登録する', new_product_path
   %li.dropdown#fat-menu
     %a.dropdown-toggle{ 'data-toggle' => 'dropdown', :href => '#' }
       = current_user.username
