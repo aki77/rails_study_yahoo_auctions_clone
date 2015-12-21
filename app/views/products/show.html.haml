@@ -1,5 +1,7 @@
 %h1= @product.name
 
+= link_to 'この商品を出品する', new_product_auction_path(@product), class: 'btn btn-primary'
+
 = simple_format @product.description
 
 = link_to '編集する', edit_product_path(@product)

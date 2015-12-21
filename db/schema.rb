@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221045528) do
+ActiveRecord::Schema.define(version: 20151221074953) do
+
+  create_table "auctions", force: :cascade do |t|
+    t.integer  "value",      null: false
+    t.integer  "product_id", null: false
+    t.datetime "expired_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "auctions", ["expired_at"], name: "index_auctions_on_expired_at"
+  add_index "auctions", ["product_id"], name: "index_auctions_on_product_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        null: false

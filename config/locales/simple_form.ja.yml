@@ -1,0 +1,18 @@
+ja:
+  simple_form:
+    "yes": 'はい'
+    "no": 'いいえ'
+    required:
+      text: 'required'
+      mark: '*'
+      message: '印のついている項目は入力が必須です。'
+    error_notification:
+      default_message: "エラーがあります。確認してください。"
+    labels:
+      defaults:
+        email: メールアドレス
+        password: パスワード
+        remember_me: 保存する
+      auction:
+        value: 最低落札価格
+        expired_at: 終了日時

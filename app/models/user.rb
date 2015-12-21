@@ -37,4 +37,5 @@ class User < ActiveRecord::Base
                        length: { maximum: 15 }
 
   has_many :products, dependent: :destroy
+  has_many :auctions, through: :products, source: :auction
 end

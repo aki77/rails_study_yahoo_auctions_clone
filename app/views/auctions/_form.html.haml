@@ -1,0 +1,9 @@
+= simple_form_for([@product, @auction]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :value
+    = f.input :expired_at
+
+  .form-actions
+    = f.button :submit
