@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, only: %i(new create edit update destroy)
+  before_action :authenticate_user!, only: %i(new create destroy)
   before_action :set_product, only: %i(new create)
   before_action :set_auction, only: %i(show destroy)
 

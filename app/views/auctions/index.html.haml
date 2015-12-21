@@ -1,19 +1,19 @@
-%h1 Listing auctions
+%h1 すべてのオークション
 
-%table
+%table.table
   %thead
     %tr
-      %th
-      %th
-      %th
+      %th 商品名
+      %th 現在価格
+      %th 入札
+      %th 終了日時
 
   %tbody
     - @auctions.each do |auction|
       %tr
-        %td= link_to 'Show', auction
-        %td= link_to 'Edit', edit_auction_path(auction)
-        %td= link_to 'Destroy', auction, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to auction.name, auction
+        %td 0円
+        %td 0
+        %td= l(auction.expired_at)
 
-%br
-
-= link_to 'New Auction', new_auction_path
+.text-center= paginate @auctions

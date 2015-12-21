@@ -18,4 +18,7 @@
 class Auction < ActiveRecord::Base
   belongs_to :product
   has_one :user, through: :product
+
+  delegate :name, to: :product, prefix: false
+  delegate :description, to: :product, prefix: false
 end
