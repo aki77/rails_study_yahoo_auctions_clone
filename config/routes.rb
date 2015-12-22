@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     resources :auctions, only: %i(new create)
   end
 
-  resources :auctions, only: %i(index show)
+  resources :auctions, only: %i(show) do
+    collection do
+      get 'closed'
+    end
+  end
 end

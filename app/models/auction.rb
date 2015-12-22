@@ -21,4 +21,11 @@ class Auction < ActiveRecord::Base
 
   delegate :name, to: :product, prefix: false
   delegate :description, to: :product, prefix: false
+
+  scope :open, -> { where('expired_at > ?', Time.current).order('expired_at') }
+  scope :closed, -> { where('expired_at <= ?', Time.current).order('expired_at desc') }
+
+  def current_value
+    value
+  end
 end

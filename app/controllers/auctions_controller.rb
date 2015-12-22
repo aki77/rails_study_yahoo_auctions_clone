@@ -4,7 +4,12 @@ class AuctionsController < ApplicationController
   before_action :set_auction, only: %i(show destroy)
 
   def index
-    @auctions = Auction.page(params[:page])
+    @auctions = Auction.open.page(params[:page]).includes(:product)
+  end
+
+  def closed
+    @auctions = Auction.closed.page(params[:page]).includes(:product)
+    render :index
   end
 
   def show
