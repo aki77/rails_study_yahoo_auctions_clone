@@ -11,18 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221074953) do
+ActiveRecord::Schema.define(version: 20151222135013) do
 
   create_table "auctions", force: :cascade do |t|
-    t.integer  "value",      null: false
-    t.integer  "product_id", null: false
-    t.datetime "expired_at", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "value",                  null: false
+    t.integer  "product_id",             null: false
+    t.datetime "expired_at",             null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "bids_count", default: 0, null: false
   end
 
   add_index "auctions", ["expired_at"], name: "index_auctions_on_expired_at"
   add_index "auctions", ["product_id"], name: "index_auctions_on_product_id"
+
+  create_table "bids", force: :cascade do |t|
+    t.integer  "auction_id", null: false
+    t.integer  "user_id",    null: false
+    t.integer  "value",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bids", ["auction_id", "value"], name: "index_bids_on_auction_id_and_value", unique: true
+  add_index "bids", ["user_id"], name: "index_bids_on_user_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        null: false

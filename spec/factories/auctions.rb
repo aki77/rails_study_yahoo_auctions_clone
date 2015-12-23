@@ -8,6 +8,7 @@
 #  expired_at :datetime         not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  bids_count :integer          default(0), not null
 #
 # Indexes
 #

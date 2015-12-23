@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   end
 
   resources :auctions, only: %i(show) do
+    resources :bids, only: %i(new create)
+
     collection do
       get 'closed'
     end

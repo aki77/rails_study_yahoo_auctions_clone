@@ -1,5 +1,8 @@
 %h1= @auction.product.name
 
+- if @auction.open?
+  = link_to '入札する', new_auction_bid_path(@auction), class: 'btn btn-primary btn-lg'
+
 %dl.dl-horizontal
   %dt 商品説明
   %dd= simple_format(@auction.product.description)
@@ -7,6 +10,3 @@
   %dd #{@auction.value} 円
   %dt 終了日時
   %dd= l(@auction.expired_at)
-
-
-= link_to '一覧に戻る', auctions_path

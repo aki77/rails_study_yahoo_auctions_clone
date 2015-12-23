@@ -17,7 +17,7 @@
       %tr
         %td= link_to auction.name, auction
         %td #{auction.current_value}円
-        %td 0
+        %td= auction.bids_count
         %td= l(auction.expired_at)
 
 .text-center= paginate @auctions

@@ -1,0 +1,12 @@
+%h1 「#{@auction.product.name}」に入札する
+
+= simple_form_for([@auction, @bid]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :value
+
+  .form-actions
+    = f.button :submit
+
+= link_to '戻る', @auction

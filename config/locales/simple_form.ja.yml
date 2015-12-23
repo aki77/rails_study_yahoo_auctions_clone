@@ -16,3 +16,6 @@ ja:
       auction:
         value: 最低落札価格
         expired_at: 終了日時
+      bid:
+        value: 金額
+        expired_at: 終了日時

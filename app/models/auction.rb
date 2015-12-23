@@ -8,6 +8,7 @@
 #  expired_at :datetime         not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  bids_count :integer          default(0), not null
 #
 # Indexes
 #
@@ -18,6 +19,7 @@
 class Auction < ActiveRecord::Base
   belongs_to :product
   has_one :user, through: :product
+  has_many :bids, dependent: :destroy
 
   delegate :name, to: :product, prefix: false
   delegate :description, to: :product, prefix: false
@@ -27,5 +29,9 @@ class Auction < ActiveRecord::Base
 
   def current_value
     value
+  end
+
+  def open?
+    expired_at > Time.current
   end
 end
