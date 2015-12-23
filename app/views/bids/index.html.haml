@@ -1,0 +1,18 @@
+%h1 「#{@auction.product.name}」への入札履歴
+
+%table.table
+  %thead
+    %tr
+      %th 入札者
+      %th 入札額
+      %th 日時
+  %tbody
+    - @bids.each do |bid|
+      %tr
+        %td= bid.user.username
+        %td= number_to_currency(bid.value)
+        %td= l(bid.created_at)
+
+.text-center= paginate @bids
+
+= link_to '戻る', @auction

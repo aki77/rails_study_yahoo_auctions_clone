@@ -19,9 +19,11 @@ class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :auction, counter_cache: true
 
+  default_scope -> { order('id desc') }
+
   STEP_VALUE = 100
 
   default_value_for :value do |bid|
-    bid.auction.value + STEP_VALUE
+    bid.auction.current_value + STEP_VALUE
   end
 end

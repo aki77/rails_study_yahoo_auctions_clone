@@ -28,7 +28,11 @@ class Auction < ActiveRecord::Base
   scope :closed, -> { where('expired_at <= ?', Time.current).order('expired_at desc') }
 
   def current_value
-    value
+    [value, maximum_value.to_i].max
+  end
+
+  def maximum_value
+    bids.maximum(:value)
   end
 
   def open?

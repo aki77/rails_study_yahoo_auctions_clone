@@ -1,12 +1,16 @@
 %h1= @auction.product.name
 
-- if @auction.open?
-  = link_to '入札する', new_auction_bid_path(@auction), class: 'btn btn-primary btn-lg'
-
 %dl.dl-horizontal
+  %dt 入札件数
+  %dd= link_to(@auction.bids_count, auction_bids_path(@auction))
+  - if @auction.open?
+    %dt 現在価格
+    %dd
+      %p= number_to_currency(@auction.current_value)
+      %p= link_to('入札する', new_auction_bid_path(@auction), class: 'btn btn-primary btn-lg')
   %dt 商品説明
   %dd= simple_format(@auction.product.description)
   %dt 最低落札価格
-  %dd #{@auction.value} 円
+  %dd= number_to_currency(@auction.value)
   %dt 終了日時
   %dd= l(@auction.expired_at)

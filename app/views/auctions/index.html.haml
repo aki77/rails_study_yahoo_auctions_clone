@@ -16,7 +16,7 @@
     - @auctions.each do |auction|
       %tr
         %td= link_to auction.name, auction
-        %td #{auction.current_value}円
+        %td= number_to_currency(auction.current_value)
         %td= auction.bids_count
         %td= l(auction.expired_at)
 

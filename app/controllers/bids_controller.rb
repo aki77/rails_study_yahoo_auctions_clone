@@ -1,6 +1,10 @@
 class BidsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i(new create)
   before_action :set_auction
+
+  def index
+    @bids = @auction.bids.page(params[:page]).includes(:user)
+  end
 
   def new
     @bid = @auction.bids.build(user: current_user)
