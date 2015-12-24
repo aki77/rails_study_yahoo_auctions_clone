@@ -17,6 +17,7 @@ gem 'kaminari'
 gem 'rambulance'
 gem 'default_value_for'
 gem 'enum_help'
+gem 'date_validator'
 
 group :development, :test do
   gem 'byebug'

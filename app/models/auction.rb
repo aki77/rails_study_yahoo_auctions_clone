@@ -29,6 +29,14 @@ class Auction < ActiveRecord::Base
   scope :open, -> { where('expired_at > ?', Time.current).order('expired_at') }
   scope :closed, -> { where('expired_at <= ?', Time.current).order('expired_at desc') }
 
+  validates :value, numericality: { only_integer: true, greater_than_or_equal_to: 1 },
+                    presence: true
+  validates :expired_at, presence: true, date: { after: proc { Time.current + 10.minute } }
+
+  default_value_for :expired_at do
+    Time.current + 1.hour
+  end
+
   def current_value
     [value, maximum_value.to_i].max
   end

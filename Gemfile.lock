@@ -69,6 +69,8 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
+    date_validator (0.8.1)
+      activemodel
     debug_inspector (0.0.2)
     default_value_for (3.0.1)
       activerecord (>= 3.2.0, < 5.0)
@@ -256,6 +258,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
+  date_validator
   default_value_for
   devise
   enum_help
