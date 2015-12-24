@@ -45,6 +45,10 @@ class Auction < ActiveRecord::Base
     bids.maximum(:value)
   end
 
+  def allow_bid_value
+    has_bids? ? maximum_value + 1 : value
+  end
+
   def open?
     expired_at > Time.current
   end
@@ -53,8 +57,12 @@ class Auction < ActiveRecord::Base
     !open?
   end
 
+  def has_bids?
+    bids_count > 0
+  end
+
   def successful_bid?
-    closed? && bids_count > 0
+    closed? && has_bids?
   end
 
   def successful_bid

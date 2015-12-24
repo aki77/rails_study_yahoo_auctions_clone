@@ -22,7 +22,7 @@ class Bid < ActiveRecord::Base
   default_scope -> { order('id desc') }
 
   validates :value, numericality: { only_integer: true,
-                                    greater_than: ->(bid) { bid.auction.current_value } },
+                                    greater_than_or_equal_to: ->(bid) { bid.auction.allow_bid_value } },
                     presence: true
 
   STEP_VALUE = 100
