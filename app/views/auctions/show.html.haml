@@ -15,7 +15,8 @@
     %dt 現在価格
     %dd
       %p= number_to_currency(@auction.current_value)
-      %p= link_to('入札する', new_auction_bid_path(@auction), class: 'btn btn-primary btn-lg')
+      - if @auction.user != current_user
+        %p= link_to('入札する', new_auction_bid_path(@auction), class: 'btn btn-primary btn-lg')
   - if @auction.successful_bid?
     %dt 落札価格
     %dd

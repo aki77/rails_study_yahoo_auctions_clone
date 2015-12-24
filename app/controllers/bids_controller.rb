@@ -2,6 +2,7 @@ class BidsController < ApplicationController
   before_action :authenticate_user!, only: %i(new create)
   before_action :set_auction
   before_action :correct_auction, only: %i(new create)
+  before_action :correct_user, only: %i(new create)
 
   def index
     @bids = @auction.bids.page(params[:page]).includes(:user)
@@ -34,5 +35,9 @@ class BidsController < ApplicationController
 
     def correct_auction
       redirect_to @auction, alert: 'このオークションは終了しています。' if @auction.closed?
+    end
+
+    def correct_user
+      raise Forbidden if @auction.user == current_user
     end
 end
