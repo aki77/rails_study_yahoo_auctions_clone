@@ -19,3 +19,9 @@ ja:
       bid:
         value: 金額
         expired_at: 終了日時
+      product:
+        name: 商品名
+        description: 説明
+      review:
+        rating: 評価
+        comment: コメント
