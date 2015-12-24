@@ -16,6 +16,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'rambulance'
 gem 'default_value_for'
+gem 'enum_help'
 
 group :development, :test do
   gem 'byebug'

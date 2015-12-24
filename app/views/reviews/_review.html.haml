@@ -1,0 +1,11 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      評価: #{review.rating_i18n}
+      .pull-right
+        評価者: #{review.reviewer.username}
+
+  .panel-body
+    %p #{link_to(review.auction.name, review.auction)}(終了日時: #{l(review.auction.expired_at)})
+    = simple_format(review.comment)
+    %p (評価日時: #{l(review.created_at)})

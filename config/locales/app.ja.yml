@@ -1,0 +1,7 @@
+ja:
+  enums:
+    review:
+      rating:
+        good: 良い
+        fair: 普通
+        bad: 悪い

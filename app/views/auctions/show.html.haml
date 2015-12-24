@@ -1,6 +1,14 @@
 %h1= @auction.product.name
 
+- if signed_in? && @auction.successful_bidder == current_user
+  .alert.alert-info{ role: 'alert' }
+    あなたがこの商品を落札しました！
+    - if @auction.review.nil? && @auction.successful_bidder == current_user
+      = link_to '出品者を評価する', new_auction_review_path(@auction), class: 'btn btn-primary'
+
 %dl.dl-horizontal
+  %dt 出品者
+  %dd #{@auction.user.username}(#{link_to('評価', user_reviews_path(@auction.user))})
   %dt 入札件数
   %dd= link_to(@auction.bids_count, auction_bids_path(@auction))
   - if @auction.open?
@@ -8,6 +16,12 @@
     %dd
       %p= number_to_currency(@auction.current_value)
       %p= link_to('入札する', new_auction_bid_path(@auction), class: 'btn btn-primary btn-lg')
+  - if @auction.successful_bid?
+    %dt 落札価格
+    %dd
+      %p= number_to_currency(@auction.successful_bid.value)
+    %dt 落札者
+    %dd= @auction.successful_bid.user.username
   %dt 商品説明
   %dd= simple_format(@auction.product.description)
   %dt 最低落札価格

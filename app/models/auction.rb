@@ -19,10 +19,12 @@
 class Auction < ActiveRecord::Base
   belongs_to :product
   has_one :user, through: :product
+  has_one :review, dependent: :destroy
   has_many :bids, dependent: :destroy
 
   delegate :name, to: :product, prefix: false
   delegate :description, to: :product, prefix: false
+  delegate :user, to: :product, prefix: false
 
   scope :open, -> { where('expired_at > ?', Time.current).order('expired_at') }
   scope :closed, -> { where('expired_at <= ?', Time.current).order('expired_at desc') }
@@ -37,5 +39,22 @@ class Auction < ActiveRecord::Base
 
   def open?
     expired_at > Time.current
+  end
+
+  def closed?
+    !open?
+  end
+
+  def successful_bid?
+    closed? && bids_count > 0
+  end
+
+  def successful_bid
+    return nil if open? || bids_count.zero?
+    bids.order('value desc').first
+  end
+
+  def successful_bidder
+    successful_bid.try(:user)
   end
 end

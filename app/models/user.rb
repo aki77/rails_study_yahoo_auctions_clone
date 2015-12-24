@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
                        length: { maximum: 15 }
 
   has_many :products, dependent: :destroy
-  has_many :auctions, through: :products, source: :auction
   has_many :bids, dependent: :destroy
+
+  def reviews
+    Review.joins(auction: :product).where('products.user_id = ?', self).order('reviews.id desc')
+  end
 end

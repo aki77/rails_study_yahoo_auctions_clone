@@ -24,6 +24,8 @@ class Bid < ActiveRecord::Base
   STEP_VALUE = 100
 
   default_value_for :value do |bid|
-    bid.auction.current_value + STEP_VALUE
+    value = bid.auction.current_value
+    value += STEP_VALUE if bid.auction.bids_count.nonzero?
+    value
   end
 end

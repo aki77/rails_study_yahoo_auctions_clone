@@ -1,0 +1,9 @@
+= simple_form_for(@review, url: auction_review_path(@auction, @review)) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :rating
+    = f.input :comment
+
+  .form-actions
+    = f.button :submit
