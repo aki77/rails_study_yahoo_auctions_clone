@@ -38,6 +38,7 @@ group :development do
   gem 'rails_layout'
   gem 'annotate'
   gem 'view_source_map'
+  gem 'letter_opener_web'
 end
 
 group :production do
