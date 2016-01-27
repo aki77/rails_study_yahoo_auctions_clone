@@ -3,7 +3,7 @@
 - if signed_in? && @auction.successful_bidder == current_user
   .alert.alert-info{ role: 'alert' }
     あなたがこの商品を落札しました！
-    - if @auction.review.nil? && @auction.successful_bidder == current_user
+    - if @auction.review.nil? && policy(@auction.build_review).new?
       = link_to '出品者を評価する', new_auction_review_path(@auction), class: 'btn btn-primary'
 
 %dl.dl-horizontal
@@ -15,7 +15,7 @@
     %dt 現在価格
     %dd
       %p= number_to_currency(@auction.current_value)
-      - if @auction.user != current_user
+      - if policy(@auction.bids.build).new?
         %p= link_to('入札する', new_auction_bid_path(@auction), class: 'btn btn-primary btn-lg')
   - if @auction.successful_bid?
     %dt 落札価格

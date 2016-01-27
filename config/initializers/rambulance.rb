@@ -25,8 +25,7 @@ Rambulance.setup do |config|
   # If Rambulance receives an exception that is not listed here, it'll render
   # the internal server error template and return 500 as http status.
   config.rescue_responses = {
-    'ApplicationController::Forbidden' => :forbidden,
-
+    'Pundit::NotAuthorizedError' => :forbidden,
     # "ActiveRecord::RecordNotUnique" => :unprocessable_entity,
     # "CanCan::AccessDenied"          => :forbidden,
     # "Pundit::NotAuthorizedError"    => :forbidden,

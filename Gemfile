@@ -18,6 +18,7 @@ gem 'rambulance'
 gem 'default_value_for'
 gem 'enum_help'
 gem 'date_validator'
+gem 'pundit'
 
 group :development, :test do
   gem 'byebug'
