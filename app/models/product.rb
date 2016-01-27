@@ -20,6 +20,4 @@ class Product < ActiveRecord::Base
 
   validates :name, presence: true
   validates :description, presence: true
-
-  default_scope -> { order('id desc') }
 end

@@ -4,7 +4,7 @@ class BidsController < ApplicationController
   before_action :accepting_auction, only: %i(new create)
 
   def index
-    @bids = @auction.bids.page(params[:page]).includes(:user)
+    @bids = @auction.bids.page(params[:page]).order(id: :desc).includes(:user)
   end
 
   def new

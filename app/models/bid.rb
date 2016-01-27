@@ -19,8 +19,6 @@ class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :auction, counter_cache: true
 
-  default_scope -> { order('id desc') }
-
   validates :value, numericality: { only_integer: true,
                                     greater_than_or_equal_to: ->(bid) { bid.auction.allow_bid_value } },
                     presence: true
