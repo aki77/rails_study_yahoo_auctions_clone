@@ -13,6 +13,7 @@ class Auction < ActiveRecord::Base
 
   validates :value, numericality: { only_integer: true, greater_than_or_equal_to: 1 },
                     presence: true
+  validates :product_id, presence: true
   validates :expired_at, presence: true, date: { after: proc { Time.current + 10.minute } }
 
   default_value_for :expired_at do
