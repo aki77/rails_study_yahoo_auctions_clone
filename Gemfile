@@ -37,7 +37,6 @@ group :development do
   gem 'bullet'
   gem 'meta_request'
   gem 'rails_layout'
-  gem 'annotate'
   gem 'view_source_map'
   gem 'letter_opener_web'
 end
